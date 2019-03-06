@@ -5,7 +5,8 @@ Sveiki atvykę į LINT (LONG INT) bibliotekos dokumentaciją.
 
 Kam reikalinga ši biblioteka?
 	Kompiuteryje duomenys (tokie kaip int) yra saugomi atmintyje, tačiau duomenims yra paskirtas ribotas atminties kiekis priklausomai nuo prietaiso architektūros.
-	Pvz 64 bitų architektūroje didžiausia galima teigiamo sveiko skaičiaus (unsigned int) reikšmė yra 9 223 372 036 854 775 807. Nors šis skaičius yra pakankamai didelis didžiajai daugumai kasdienių reikmių, kartais prireikia operuoti didesnėmis reikšmėmis. Tam buvo sukūrta ši biblioteka - naudojant ją galima sukūrti praktiškai begalinius sveikus skaičiuos ir su jais atlikti standartines operacijas.
+	Pvz 64 bitų architektūroje didžiausia galima teigiamo sveiko skaičiaus (unsigned int) reikšmė yra 9 223 372 036 854 775 807.
+Nors šis skaičius yra pakankamai didelis didžiajai daugumai kasdienių reikmių, kartais prireikia operuoti didesnėmis reikšmėmis. Tam buvo sukūrta ši biblioteka - naudojant ją galima sukūrti praktiškai begalinius sveikus skaičiuos ir su jais atlikti standartines operacijas.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
