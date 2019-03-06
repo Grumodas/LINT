@@ -6,12 +6,14 @@ Sveiki atvykę į LINT (LONG INT) bibliotekos dokumentaciją.
 Kam reikalinga ši biblioteka?
 	Kompiuteryje duomenys (tokie kaip int) yra saugomi atmintyje, tačiau duomenims yra paskirtas ribotas atminties kiekis priklausomai nuo prietaiso architektūros.
 	Pvz 64 bitų architektūroje didžiausia galima teigiamo sveiko skaičiaus (unsigned int) reikšmė yra 9 223 372 036 854 775 807.
-Nors šis skaičius yra pakankamai didelis didžiajai daugumai kasdienių reikmių, kartais prireikia operuoti didesnėmis reikšmėmis. Tam buvo sukūrta ši biblioteka - naudojant ją galima sukūrti praktiškai begalinius sveikus skaičiuos ir su jais atlikti standartines operacijas.
+Nors šis skaičius yra pakankamai didelis didžiajai daugumai kasdienių reikmių, kartais prireikia operuoti didesnėmis reikšmėmis. 
+Tam buvo sukūrta ši biblioteka - naudojant ją galima sukūrti praktiškai begalinius sveikus skaičiuos ir su jais atlikti standartines operacijas.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Kaip pradėti naudotis?
-	Visi LINT bibliotekos failai turi būti tame pačiame aplanke, kaip ir programa, kurioje biblioteka bus naudojama. Programos, kurioje norima panaudoti LINT galimybes, viršuje reikia prirašyti:
+	Visi LINT bibliotekos failai turi būti tame pačiame aplanke, kaip ir programa, kurioje biblioteka bus naudojama. 
+	Programos, kurioje norima panaudoti LINT galimybes, viršuje reikia prirašyti:
 		import "LINT.h"
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -19,15 +21,19 @@ Kaip pradėti naudotis?
 LINT veikimo principas
 	Visos LINT funkcijos (išvardintos žemiau) kaip argumentus priima skaičiuos užrašytus char masyvus, t.y. stringus. 
 		pvz.: subLINT("42", "1");
-	Šie stringai atmintyje gali būti sukūrti tiek dinamiškai, tiek statiškai. Naudojantis dauguma funkcijų, jų veikimo pabaigoje vartotojui bus grąžinamas naujas dinamiškai alokuotas char masyvas su atitinkamu rezultatu (anksčiau pateiktu atveju būtų grąžinamas stringas su rezultatu "41"). 
+	Šie stringai atmintyje gali būti sukūrti tiek dinamiškai, tiek statiškai. 
+	Naudojantis dauguma funkcijų, jų veikimo pabaigoje vartotojui bus grąžinamas naujas dinamiškai alokuotas 
+	char masyvas su atitinkamu rezultatu (anksčiau pateiktu atveju būtų grąžinamas stringas su rezultatu "41"). 
 
-	SVARBU: vartotojui pačiam paliekama laisvė (atsakomybė) korektiškai atlaisvinti gauto rezultato atmintį. T.y. baigus naudotis visomis LINT funkcijomis, visų iš LINT gautų objektų atmintį reikia išlaisvinti naudojant komandą free(). Ši funkcija randama bibliotekoje <stdlib.h>.
+	SVARBU: vartotojui pačiam paliekama laisvė (atsakomybė) korektiškai atlaisvinti gauto rezultato atmintį. 
+	T.y. baigus naudotis visomis LINT funkcijomis, visų iš LINT gautų objektų atmintį reikia išlaisvinti naudojant komandą free(). Ši funkcija randama bibliotekoje <stdlib.h>.
 		pvz.:
 			char *result = subLINT("42", "1");
 			//...
 			free(result);
 
-	Taip naudojantis LINT biblioteka bus užtikrinamas korektiškas atminties išlaisvinimas bei greitas LINT bibliotekos veikimas išvengiant įvairių atminties klaidų.
+	Taip naudojantis LINT biblioteka bus užtikrinamas korektiškas atminties išlaisvinimas bei greitas LINT bibliotekos 
+	veikimas išvengiant įvairių atminties klaidų.
 
 	Kaip argumentus į funkcijas padavus netinkamus kintamuosius, tokius kaip:
 			divLINT("42", "0")			//dalyba iš nulio
@@ -83,7 +89,8 @@ LINT funkcijos
 ----------------------------------------------------------palyginimai--------------------------------------------------------------------------------
 
 	PASTABA APIE PALYGINIMUS:
-		LINT turi funkcijas "mažiau", "daugiau" bei "lygu", tačiau neturi funkcijų "mažiau arba lygu", "daugiau arba lygu" bei "nelygu". Šios funkcijos nepateikiamos todėl, kad jos nesunkiai gaunamos iš jau turimų, t.y.:
+		LINT turi funkcijas "mažiau", "daugiau" bei "lygu", tačiau neturi funkcijų "mažiau arba lygu", 
+		"daugiau arba lygu" bei "nelygu". Šios funkcijos nepateikiamos todėl, kad jos nesunkiai gaunamos iš jau turimų, t.y.:
 		"mažiau arba lygu" gaunama paneigiant "daugiau" loginiu neigimo operatoriumi "!"
 		"daugiau arba lygu" gaunama paneigiant "mažiau" loginiu neigimo operatoriumi "!"
 		"nelygu" gauna paneigiant "lygu" loginiu neigimo operatoriumi "!"
@@ -169,7 +176,10 @@ LINT funkcijos
 	Grąžina: char *sk_dalmuo (t.y. sk1 / sk2)
 
 	Pastaba nr. 1: funkcija nepriima char *sk2 = "0", nes dalyba iš nulio negalima.
-	Pastaba nr. 2: iš visų LINT funkcijų, dėl labai didelio skaičiavimų skaičiaus, div bei modulo funkcijos yra vienos lėtesnių, todėl joms rekomenduojama venkti didelių skaičių (rekomenduojama neviršyti skaičių didesnių nei keli milijonai). Funkcija veiks teisingai ir su dideliais skaičiais, tačiau gerokai lėčiau.
+	Pastaba nr. 2: iš visų LINT funkcijų, dėl labai didelio skaičiavimų skaičiaus, 
+	div bei modulo funkcijos yra vienos lėtesnių, todėl joms rekomenduojama venkti 
+	didelių skaičių (rekomenduojama neviršyti skaičių didesnių nei keli milijonai). 
+	Funkcija veiks teisingai ir su dideliais skaičiais, tačiau gerokai lėčiau.
 
 	Baigus naudotis funkcija ir jos rezultatu, rekomenduojama atlaisvinti atmintį naudojant funkciją free. 
 
@@ -192,7 +202,9 @@ LINT funkcijos
 	Grąžina: char *sk_liekana (t.y. sk1 % sk2)
 
 	Pastaba nr. 1: funkcija nepriima char *sk2 = "0", nes dalyba iš nulio negalima.
-	Pastaba nr. 2: iš visų LINT funkcijų, dėl labai didelio skaičiavimų skaičiaus, div bei modulo funkcijos yra vienos lėtesnių, todėl joms rekomenduojama venkti didelių skaičių (rekomenduojama neviršyti skaičių didesnių nei keli milijonai). Funkcija veiks teisingai ir su dideliais skaičiais, tačiau gerokai lėčiau.
+	Pastaba nr. 2: iš visų LINT funkcijų, dėl labai didelio skaičiavimų skaičiaus, div bei modulo funkcijos yra vienos lėtesnių,
+	todėl joms rekomenduojama venkti didelių skaičių (rekomenduojama neviršyti skaičių didesnių nei keli milijardai). 
+	Funkcija veiks teisingai ir su dideliais skaičiais, tačiau gerokai lėčiau.
 
 	Baigus naudotis funkcija ir jos rezultatu, rekomenduojama atlaisvinti atmintį naudojant funkciją free. 
 
