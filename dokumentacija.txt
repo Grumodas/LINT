@@ -17,19 +17,19 @@ Kaip pradėti naudotis?
 
 LINT veikimo principas
 	Visos LINT funkcijos (išvardintos žemiau) kaip argumentus priima skaičiuos užrašytus char masyvus, t.y. stringus. 
-		pvz.: subLongInt("42", "1");
+		pvz.: subLINT("42", "1");
 	Šie stringai atmintyje gali būti sukūrti tiek dinamiškai, tiek statiškai. Naudojantis dauguma funkcijų, jų veikimo pabaigoje vartotojui bus grąžinamas naujas dinamiškai alokuotas char masyvas su atitinkamu rezultatu (anksčiau pateiktu atveju būtų grąžinamas stringas su rezultatu "41"). 
 
 	SVARBU: vartotojui pačiam paliekama laisvė (atsakomybė) korektiškai atlaisvinti gauto rezultato atmintį. T.y. baigus naudotis visomis LINT funkcijomis, visų iš LINT gautų objektų atmintį reikia išlaisvinti naudojant komandą free(). Ši funkcija randama bibliotekoje <stdlib.h>.
 		pvz.:
-			char *result = subLongInt("42", "1");
+			char *result = subLINT("42", "1");
 			//...
 			free(result);
 
 	Taip naudojantis LINT biblioteka bus užtikrinamas korektiškas atminties išlaisvinimas bei greitas LINT bibliotekos veikimas išvengiant įvairių atminties klaidų.
 
 	Kaip argumentus į funkcijas padavus netinkamus kintamuosius, tokius kaip:
-			divLongInt("42", "0")			//dalyba iš nulio
+			divLINT("42", "0")			//dalyba iš nulio
 			mulLontInt("hello", "world")	//ne skaičiai
 	bus aktyvuotas "gynybinis" bibliotekos mechanizmas ir funkcija baigs visos programos darbą. 
 	Kaip argumentai priimami tik sveikieji skaičiai (išskyrus išimtinius atvejus, žr. funkcijų aprašus).
@@ -51,7 +51,7 @@ LINT funkcijos
 -----------------------------------------------------sudėtis/atmintis--------------------------------------------------------------------------------
 
 	1. Sudėtis 
-		char* sumLongInt(char *ptr_long_char_int1, char *ptr_long_char_int2);
+		char* sumLINT(char *string1, char *string2);
 		
 		Aprašymas: funkcija priima du sveikus skaičius ir grąžina jų sumą.
 		Priima: char *sk1, char * sk2
@@ -60,13 +60,13 @@ LINT funkcijos
 		Baigus naudotis funkcija ir jos rezultatu, rekomenduojama atlaisvinti atmintį naudojant funkciją free. 
 
 		Naudojimo pavyzdys:
-			char *sum = sumLongInt("42", "1");	//sum = "43"
+			char *sum = sumLINT("42", "1");	//sum = "43"
 			//...
 			free(sum);
 
 
 	2. 	Atimtis
-		char* subLongInt(char *ptr_long_char_int1, char *ptr_long_char_int2)
+		char* subLINT(char *string1, char *string2)
 
 		Aprašymas: funkcija priima du sveikus skaičius ir grąžina jų skirtumą.
 		Priima: char *sk1, char *sk2
@@ -75,7 +75,7 @@ LINT funkcijos
 		Baigus naudotis funkcija ir jos rezultatu, rekomenduojama atlaisvinti atmintį naudojant funkciją free. 
 
 		Naudojimo pavyzdys:
-			char *difference = subLongInt("42", "1");	//sub = "41"
+			char *difference = subLINT("42", "1");	//sub = "41"
 			//...
 			free(difference);
 
@@ -88,13 +88,13 @@ LINT funkcijos
 		"nelygu" gauna paneigiant "lygu" loginiu neigimo operatoriumi "!"
 
 		pvz.:
-			if (!isLongIntLarger ("1", "42")) {		//mažiau arba lygu
+			if (!isLINTlarger ("1", "42")) {		//mažiau arba lygu
 				//...
 			}
 
 
 	3. 	Palyginimas "ar daugiau"
-		int isLongIntLarger(char *ptr_long_char_int1, char *ptr_long_char_int2)
+		int isLINTlarger(char *string1, char *string2)
 
 		Aprašymas: funkcija priima du sveikus skaičius ir grąžina, ar pirmas argumentas didesnis už antrą.
 		Priima: char *sk1, char *sk2
@@ -102,17 +102,17 @@ LINT funkcijos
 				 int 0, jeigu sk1 <= sk2
 
 		Naudojimo pavyzdys nr. 1:
-			char *isLarger = isLongIntLarger("42", "1");	//isLarger = 1
+			char *isLarger = isLINTlarger("42", "1");	//isLarger = 1
 			
 		Naudojimo pavyzdys nr. 2:
-			char *isLarger = isLongIntLarger("42", "42")	//isLarger = 0
+			char *isLarger = isLINTlarger("42", "42")	//isLarger = 0
 
 		Naudojimo pavyzdys nr. 3:
-			char *isLarger = isLongIntLarger("1", "42")		//isLarger = 0
+			char *isLarger = isLINTlarger("1", "42")		//isLarger = 0
 
 
 	4. 	Palyginimas "ar mažiau"
-		int isLongIntSmaller(char *ptr_long_char_int1, char *ptr_long_char_int2)
+		int isLINTsmaller(char *string1, char *string2)
 
 		Aprašymas: funkcija priima du sveikus skaičius ir grąžina, ar pirmas argumentas mažesnis už antrą.
 		Priima: char *sk1, char *sk2
@@ -120,17 +120,17 @@ LINT funkcijos
 				 int 0, jeigu sk1 >= sk2
 
 		Naudojimo pavyzdys nr. 1:
-			char *LINTmaller = isLongIntSmaller("42", "1");	//LINTmaller = 0
+			char *isSmaller = isLINTsmaller("42", "1");	//isSaller = 0
 			
 		Naudojimo pavyzdys nr. 2:
-			char *LINTmaller = isLongIntSmaller("42", "42")	//LINTmaller = 0
+			char *isSmaller = isLINTsmaller("42", "42")	//isSmaller = 0
 			
 		Naudojimo pavyzdys nr. 3:
-			char *LINTmaller = isLongIntSmaller("1", "42")	//LINTmaller = 1
+			char *isSmaller = isLINTsmaller("1", "42")	//isSmaller = 1
 
 
 	5. Palyginimas "ar lygu"
-	int isLongIntEqual(char *ptr_long_char_int1, char *ptr_long_char_int2);
+	int isLINTequal(char *string1, char *string2);
 
 	Aprašymas: funkcija priima du sveikus skaičius ir grąžina ar argumentai lygūs.
 	Priima: char *sk1, char *sk2
@@ -138,15 +138,15 @@ LINT funkcijos
 			 int 0, jeigu sk1 != sk2
 
 	Naudojimo pavyzdys nr. 1:
-		char *isEqual = isLongIntEqual("42", "1");	//isEqual = 0
+		char *isEqual = isLINTequal("42", "1");	//isEqual = 0
 		
 	Naudojimo pavyzdys nr. 2:
-		char *isEqual = isLongIntEqual("42", "42")	//isEqual = 1
+		char *isEqual = isLINTequal("42", "42")	//isEqual = 1
 
 ----------------------------------------------------------daugyba/dalyba-----------------------------------------------------------------------------
 
 	6. Daugyba
-	char *mulLongInt(char *ptr_long_char_int1, char *ptr_long_char_int2)
+	char *mulLINT(char *string1, char *string2)
 
 	Aprašymas: funkcija priima du sveikus skaičius ir grąžina jų sandaugą.
 	Priima: char *sk1, char *sk2
@@ -155,13 +155,13 @@ LINT funkcijos
 	Baigus naudotis funkcija ir jos rezultatu, rekomenduojama atlaisvinti atmintį naudojant funkciją free. 
 
 	Naudojimo pavyzdys:
-		char *multiplication = mulLongInt("2", "4");	//multiplication = "8"
+		char *multiplication = mulLINT("2", "4");	//multiplication = "8"
 		//...
 		free(multiplication);
 		
 	
 	7. Dalyba
-	char *divLongInt(char *ptr_long_char_int1, char *ptr_long_char_int2)
+	char *divLINT(char *string1, char *string2)
 
 	Aprašymas: funkcija priima du sveikus skaičius ir grąžina dalybos sveikąją dalį.
 	Priima: char *sk1, char *sk2
@@ -173,18 +173,18 @@ LINT funkcijos
 	Baigus naudotis funkcija ir jos rezultatu, rekomenduojama atlaisvinti atmintį naudojant funkciją free. 
 
 	Naudojimo pavyzdys nr. 1:
-		char *division = divLongInt("4", "2");	//division = "2"
+		char *division = divLINT("4", "2");	//division = "2"
 		//...
 		free(division);
 	
 	Naudojimo pavyzdys nr. 2:
-		char *division = divLongInt("7", "3");	//division = "2"
+		char *division = divLINT("7", "3");	//division = "2"
 		//...
 		free(division);
 		
 
 	8. Liekana (modulo)
-	char *modLongInt(char *ptr_long_char_int1, char *ptr_long_char_int2)
+	char *modLINT(char *string1, char *string2)
 
 	Aprašymas: funkcija priima du sveikus skaičius ir grąžino jų dalybos liekaną.
 	Priima: char *sk1, char *sk2
@@ -196,12 +196,12 @@ LINT funkcijos
 	Baigus naudotis funkcija ir jos rezultatu, rekomenduojama atlaisvinti atmintį naudojant funkciją free. 
 
 	Naudojimo pavyzdys nr. 1:
-		char *modulo = modLongInt("4", "2");	//modulo = "0"
+		char *modulo = modLINT("4", "2");	//modulo = "0"
 		//...
 		free(modulo);
 	
 	Naudojimo pavyzdys nr. 2:
-		char *modulo = modLongInt("7", "3");	//modulo = "1"
+		char *modulo = modLINT("7", "3");	//modulo = "1"
 		//...
 		free(modulo);
 
