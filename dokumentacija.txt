@@ -208,7 +208,7 @@ LINT funkcijos
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Ačiū kad naudojatės mūsų LINT biblioteka. 
-Kilus klausimams ar skundams rašytite VU administracijai.
+Bet kokiais klausimais kreipkitės į github.com/Grumodas
 
 Gero naudojimo,
 Kęstutis Grumodas
